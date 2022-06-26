@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package service.v1;
+
+option go_package = "service/v1";
+
+import "group.proto";
+
+service Transport {
+	rpc FindGroups(FindGroupsRequest) returns (FindGroupsReply) {};
+	rpc SaveGroups(SaveGroupsRequest) returns (SaveGroupsReply) {};
+	rpc RemoveGroups(RemoveGroupsRequest) returns (RemoveGroupsReply) {};
+
+	rpc FindGroupMember(FindGroupMemberRequest) returns (FindGroupMemberReply) {};
+	rpc AddGroupMember(AddGroupMemberRequest) returns (AddGroupMemberReply) {};
+	rpc RemoveGroupMember(RemoveGroupMemberRequest) returns (RemoveGroupMemberReply) {};
+}
+
+message FindGroupsRequest {
+	service.v1.GroupQuerier	querier = 1;
+}
+message FindGroupsReply {
+	int32	count = 1;
+	repeated service.v1.Group	data = 2;
+}
+message SaveGroupsRequest {
+	repeated service.v1.Group	data = 1;
+}
+message SaveGroupsReply {
+	repeated service.v1.Group	data = 1;
+}
+message RemoveGroupsRequest {
+	service.v1.GroupQuerier	querier = 1;
+}
+message RemoveGroupsReply {
+}
+message FindGroupMemberRequest {
+	int32 groupId = 1;
+}
+message FindGroupMemberReply {
+	repeated int32 data = 1;
+}
+message AddGroupMemberRequest {
+	service.v1.GroupMember data = 1;
+}
+message AddGroupMemberReply {
+	service.v1.GroupMember data = 1;
+}
+message RemoveGroupMemberRequest {
+	service.v1.GroupMember data = 1;
+}
+message RemoveGroupMemberReply {
+	service.v1.GroupMember data = 1;
+}

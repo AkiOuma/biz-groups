@@ -1,0 +1,28 @@
+destination: /root/projects/janus/janus-biz-groups
+serviceName: github.com/AkiOuma/biz-groups
+type: service
+apiVersion: v1
+thirdPartyProto:
+  - google/protobuf/timestamp.proto
+entity:
+  - name: group
+    field:
+      - name: id
+        type: int
+        root: true
+      - name: name
+        type: string
+      - name: description
+        type: string
+      - name: parent
+        type: int
+config:
+  transport:
+    grpc:
+      addr: localhost:8080
+  datasource:
+    sqldb:
+      host: localhost
+      port: 3306
+      user: root
+      database: janus-biz-groups
